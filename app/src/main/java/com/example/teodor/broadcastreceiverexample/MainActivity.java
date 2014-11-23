@@ -14,6 +14,7 @@ import java.util.List;
 public class MainActivity extends Activity {
 
     private ListView listView;
+    private ArrayAdapter<String> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,10 +23,17 @@ public class MainActivity extends Activity {
         listView = (ListView) findViewById(R.id.listView);
 
         List<String> strings = new ArrayList<String>();
-        ArrayAdapter<String> adapter = new ArrayAdapter<String> (this, android.R.layout.simple_list_item_1, strings);
+        adapter = new ArrayAdapter<String> (this, android.R.layout.simple_list_item_1, strings);
         listView.setAdapter(adapter);
 
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        adapter.clear();
+        adapter.addAll(NetworkChangeReceiver.changes);
+        adapter.notifyDataSetChanged();
+    }
 }
