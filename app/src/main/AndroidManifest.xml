@@ -19,10 +19,11 @@
         </activity>
 
         <receiver
-            android:name=".NetworkChangeReceiver"
+            android:name=".PowerConnectedReceiver"
             android:enabled="true">
            <intent-filter>
-               <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
+               <action android:name="android.intent.action.ACTION_POWER_CONNECTED"/>
+               <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED"/>
            </intent-filter>
         </receiver>
 
